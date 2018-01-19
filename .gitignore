@@ -1,0 +1,4 @@
+*.bin
+*.hex
+!countones.bin
+!reverse.bin

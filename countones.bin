@@ -1,0 +1,27 @@
+;
+; Name:        Tyler Davis
+; Assignment:  Asgn02, Count Ones
+; Registers
+;   R0: Memory address of the number
+;   R1: The value itself
+;   R2: The mask used to test each bit
+;   R3: The 1's counter
+;   R4: The test result of using the mask
+; Question
+;   1) x7FFF
+;   2) R2 keeps track of where the data is located
+;   3) R2 is incremented to move to the next number
+;   4) R4 is acting as a counter and there are 10 #s
+;
+0011 0000 0000 0000  ; start the program at x3000
+1110 000 011111111   ; load the address x3100 into R0
+0110 001 000 000000  ; load the value at x3100 into R1
+0101 011 011 1 00000 ; clear R3
+0001 010 011 1 00001 ; place the value value x0001 into R2
+0101 100 001 000 010 ; determines if there is a 1 at the current spot
+0000 010 000000001   ; checks if the value in R4 is 0
+0001 011 011 1 00001 ; adds 1 to the counter in R3
+0001 010 010 000 010 ; left shifts the mask in R2
+0000 101 111111011   ; checks if the value in R2 is not 0
+0111 011 000 000001  ; stores the counter at x3101
+1111 0000 0010 0101  ; halts the program
