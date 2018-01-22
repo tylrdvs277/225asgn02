@@ -1,6 +1,15 @@
 ;
 ; Name:        Tyler Davis
 ; Assignment:  Asgn02, Reverse
+; Registers
+;   R0: Memory address of the number
+;   R1: The value itself
+;   R2: The mask used to test each bit
+;   R3: The 1's counter
+;   R4: The test result of using the mask
+;   R5: Sub counter to determine the number of bits to shift
+;   R6: Counts the bits left to check
+;   R7: Contains the bit to reverse 
 ; 
 0011 0000 0000 0000  ; sets the start to x3000
 1110 000 011111111   ; places the memory address of the number into R0
@@ -10,8 +19,9 @@
 0001 110 010 1 01111 ; creates a counter in R6 and sets it to 16
 ;
 0101 011 010 000 001 ; check the value of the current bit
-0000 010 000000111   ; if the bit is zero skip ahead
-0101 111 111 1 00001 ; places a bit in the right place to move into position
+0000 010 000001000   ; if the bit is zero skip ahead
+0101 111 111 1 00000 ; clears the register that will evetually contain bit to shift
+0001 111 111 1 00001 ; places a bit in the right place to move into position
 0001 101 110 1 11111 ; copies current counter to determine bits to left shift
 0000 010 000000011   ; if the counter is zero, skip ahead
 0001 111 111 000 111 ; shifts bit left
@@ -20,6 +30,6 @@
 0001 100 100 000 111 ; adds bit to reversed answer   
 0001 010 010 000 010 ; left shifts the mast
 0001 110 110 1 11111 ; decrements the counter
-0000 001 111110100   ; sends back to the top of the loop if counter is positive
+0000 001 111110011   ; sends back to the top of the loop if counter is positive
 0111 100 000 000001  ; stores the final reversed value in x3101
 1111 0000 0010 0101  ; halts program
